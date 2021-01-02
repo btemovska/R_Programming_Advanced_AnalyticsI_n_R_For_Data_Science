@@ -136,7 +136,23 @@ summary(list_rl1)
 
 
 #----------------------Subsetting a list
+list_rl1[1:3] #show me from from 1st component to 3rd
+list_rl1[c(1,4)]
+list_rl1[c("Machine", "MinMeanMax")]
 
+
+#----------------------Creating A Timeseries Plot
+library(ggplot2)
+p <- ggplot(data=util)
+p + geom_line(aes(x=PosixTime, y=Utilization, colour=Machine), size=1.2) + facet_grid(Machine~.) +
+  geom_hline(yintercept = 0.90, colour = "Gray", size = 1.2, linetype = 3)
+
+
+myplot <- p + geom_line(aes(x=PosixTime, y=Utilization, colour=Machine), size=1.2) + facet_grid(Machine~.) +
+  geom_hline(yintercept = 0.90, colour = "Gray", size = 1.2, linetype = 3)
+
+list_rl1$Plot <- myplot
+summary(list_rl1)
 
 
 
